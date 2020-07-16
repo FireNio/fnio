@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/firenio/firenio-go/core"
+	"strconv"
 	"unsafe"
 )
 
@@ -10,7 +11,12 @@ func main() {
 
 	fmt.Println("123")
 
-	TestIntPtrMap()
+	//TestIntPtrMap()
+
+	var CANCEL_MASK uint8 = 1 << 7
+	var DELAY_MASK  uint8 = ^(CANCEL_MASK)
+
+	fmt.Println(strconv.FormatInt(int64(DELAY_MASK), 2))
 }
 
 func TestIntPtrMap()  {
