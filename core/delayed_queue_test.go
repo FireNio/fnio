@@ -16,19 +16,19 @@ func TestDelayedQueue(t *testing.T) {
 	q.Offer(NewTestDelayTask(500))
 	q.Offer(NewTestDelayTask(600))
 
-	q.Poll().Run()
-	q.Poll().Run()
-	q.Poll().Run()
-	q.Poll().Run()
-	q.Poll().Run()
-	q.Poll().Run()
+	q.Poll().Run(0)
+	q.Poll().Run(0)
+	q.Poll().Run(0)
+	q.Poll().Run(0)
+	q.Poll().Run(0)
+	q.Poll().Run(0)
 }
 
 type TestDelayTask struct {
 	DelayTask
 }
 
-func (d *TestDelayTask) Run() {
+func (d *TestDelayTask) Run(goid int64) {
 	fmt.Println("delay: ", d.DelayTask.GetDelay())
 }
 

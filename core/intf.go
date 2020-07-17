@@ -1,7 +1,18 @@
 package core
 
+import (
+	"sync/atomic"
+	"unsafe"
+)
+
+var _goid int64 = 0
+
+func NextGoId() int64 {
+	return atomic.AddInt64(&_goid, 1)
+}
+
 type Runnable interface {
-	Run()
+	Run(goid int64)
 }
 
 type DelayRunnable interface {
@@ -13,3 +24,11 @@ type DelayRunnable interface {
 	Done()
 	CompareTo(other DelayRunnable) int64
 }
+
+type Queue interface {
+	Offer(item unsafe.Pointer) bool
+	Poll() unsafe.Pointer
+	IsEmpty() bool
+}
+
+

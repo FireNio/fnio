@@ -40,3 +40,10 @@ func FillPtrNil(array []unsafe.Pointer) {
 		array[i] = nil
 	}
 }
+
+func IsSq2(value int) bool {
+	for value > 2 {
+		value = value >> 1
+	}
+	return value == 2
+}
