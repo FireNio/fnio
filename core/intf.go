@@ -5,7 +5,7 @@ import (
 	"unsafe"
 )
 
-var _goid int64 = 0
+var _goid int64 = 1
 
 func NextGoId() int64 {
 	return atomic.AddInt64(&_goid, 1)
